@@ -1,0 +1,17 @@
+{
+    "name": "Camel JBang Dev Container",
+    "build": {
+      "dockerfile": "Dockerfile"
+    },
+    "context": "..",
+    "workspaceFolder": "/workspace",
+    "runArgs": [
+      "--userns=keep-id",
+      "--user=1000:1000",
+      "--volume=${localWorkspaceFolder}:/workspace:z"
+    ],
+    "settings": {
+      "terminal.integrated.defaultProfile.linux": "bash"
+    },
+    "postCreateCommand": "camel version"
+  }
