@@ -1,0 +1,5 @@
+*.org*
+*._local*
+data-minio/
+.devcontainer/
+.camel-jbang/

@@ -1,0 +1,6 @@
+- from:
+    uri: "timer:plcStubTimer?period=3000"
+    steps:
+      - to: "log:stub-log"
+      - log:
+          message: "PLCスタブ実行中：タイマーイベント発生"

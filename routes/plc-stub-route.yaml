@@ -1,0 +1,18 @@
+- from:
+    uri: "file:/workspace/sampledata?fileName=sensor_dataset.csv&noop=true"
+    steps:
+      - unmarshal:
+          csv:
+            useMaps: true
+      - split:
+          simple: "${body}"
+          steps:
+            - marshal:
+                json:
+                  library: Jackson
+            - set-header:
+                name: "Content-Type"
+                constant: "application/json"
+            - to: "http://host.containers.internal:8088/receive"
+            - log:
+                message: "📤 送信: ${body}"
