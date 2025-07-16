@@ -7,7 +7,8 @@
           json: {}
       - set-header:
           name: "CamelAwsS3Key"
-          simple: "plc-data-${date:now:yyyyMMddHHmmssSSS}.json"
+          expression:
+            simple: "plc-data-${date:now:yyyyMMddHHmmssSSS}.json"
       - to: "aws2-s3://plc-data?accessKey=minioadmin&secretKey=minioadmin&region=us-east-1&overrideEndpoint=true&uriEndpointOverride=http://host.containers.internal:9000&autoCreateBucket=false&forcePathStyle=true"
       - set-body:
           constant: '{"status":"ok"}'

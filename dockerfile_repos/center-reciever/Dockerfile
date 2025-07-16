@@ -23,6 +23,15 @@ RUN jbang app install camel@apache/camel
 
 ENV PATH="/root/.jbang/bin:/usr/local/bin:${PATH}"
 
+RUN mkdir -p /workspace/routes \
+ && curl -o /workspace/routes/center-reciever-route.yaml \
+    https://raw.githubusercontent.com/keyamam0/DataDrivenManu2025/main/routes/center-reciever-route.yaml
+
 WORKDIR /workspace
+
+# コンテナ起動時にCamelルートを実行
+CMD ["camel", "run", "/workspace/routes/center-reciever-route.yaml"]
+# CMD ["sh", "-c", "camel run /workspace/routes/center-reciever-route.yaml --logging-level DEBUG | tee /workspace/camel.log"]
+# CMD ["sh", "-c", "camel run /workspace/routes/center-reciever-route.yaml"]
 
 # CMD ["camel", "version"]
